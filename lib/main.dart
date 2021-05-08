@@ -5,6 +5,7 @@ import 'package:food_app/screens/categories_screen.dart';
 import 'package:food_app/screens/home_screen.dart';
 import 'package:food_app/screens/product_details.dart';
 import 'package:food_app/screens/products_screen.dart';
+import 'package:food_app/screens/shopping_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,6 +35,7 @@ class FoodFirst extends StatelessWidget {
         CategoriesScreen.id: (context) => CategoriesScreen(),
         ProductsScreen.id: (context) => ProductsScreen(),
         ProductDetails.id: (context) => ProductDetails(),
+        ShoppingScreen.id: (context) => ShoppingScreen(),
       },
     );
   }

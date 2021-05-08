@@ -7,6 +7,7 @@ import 'package:food_app/constant/constant.dart';
 import 'package:food_app/screens/categories_screen.dart';
 import 'package:food_app/screens/product_details.dart';
 import 'package:food_app/screens/products_screen.dart';
+import 'package:food_app/screens/shopping_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -44,17 +45,22 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontSize: 20,
                     ),
                   ),
-                  trailing: Container(
-                    padding: EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: mainColor,
-                      borderRadius: BorderRadius.circular(10),
-                      boxShadow: [Constant.boxShadow],
-                    ),
-                    child: Icon(
-                      CupertinoIcons.bell,
-                      color: Colors.white,
-                      size: 27,
+                  trailing: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, ShoppingScreen.id);
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      decoration: BoxDecoration(
+                        color: mainColor,
+                        borderRadius: BorderRadius.circular(10),
+                        boxShadow: [Constant.boxShadow],
+                      ),
+                      child: Icon(
+                        CupertinoIcons.cart_fill,
+                        color: Colors.white,
+                        size: 27,
+                      ),
                     ),
                   ),
                 ),
@@ -422,10 +428,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ),
-                        subtitle: Container(
+                        subtitle: SizedBox(
                           height: 200,
                           child: PageView.builder(
-                            controller: PageController(viewportFraction: 0.95),
+                            //controller: PageController(viewportFraction: 0.95),
                             physics: BouncingScrollPhysics(),
                             itemCount: Constant.itemCount,
                             itemBuilder: (context, index) {
