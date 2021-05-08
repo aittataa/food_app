@@ -1,6 +1,6 @@
 # food_app
 
-Food App
+Food App UI/UX Design
 
 ## Getting Started
 
