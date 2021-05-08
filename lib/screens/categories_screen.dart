@@ -69,7 +69,7 @@ class CategoriesScreen extends StatelessWidget {
                     mainAxisSpacing: 8,
                     crossAxisSpacing: 8,
                   ),
-                  itemCount: 25,
+                  itemCount: Constant.itemCount,
                   itemBuilder: (context, index) {
                     bool state = index % 2 == 0;
                     return GestureDetector(

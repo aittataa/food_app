@@ -4,6 +4,8 @@ class Constant {
   static const appTitle = "Food First";
   static const appDesc = "Food Delivery App";
 
+  static const int itemCount = 25;
+
   static const boxShadow = BoxShadow(
     color: Colors.black12,
     blurRadius: 10,

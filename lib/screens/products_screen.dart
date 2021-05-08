@@ -70,7 +70,7 @@ class ProductsScreen extends StatelessWidget {
                     crossAxisSpacing: 10,
                     childAspectRatio: 0.75,
                   ),
-                  itemCount: 25,
+                  itemCount: Constant.itemCount,
                   itemBuilder: (context, index) {
                     bool state = index % 3 == 0;
                     return GestureDetector(

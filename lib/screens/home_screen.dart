@@ -103,8 +103,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             icon: Icon(Icons.search, color: Colors.black54),
                             border: InputBorder.none,
                             hintText: "Search...",
-                            hintStyle:
-                                TextStyle(color: Colors.black38, fontWeight: FontWeight.bold),
+                            hintStyle: TextStyle(
+                              color: Colors.black38,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
@@ -158,7 +160,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisSpacing: 10,
                               childAspectRatio: 1.25,
                             ),
-                            itemCount: 10,
+                            itemCount: Constant.itemCount,
                             itemBuilder: (context, index) {
                               bool state = currentIndex == index;
                               return GestureDetector(
@@ -257,7 +259,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               mainAxisSpacing: 10,
                               childAspectRatio: 1.5,
                             ),
-                            itemCount: 10,
+                            itemCount: Constant.itemCount,
                             itemBuilder: (context, index) {
                               bool state = index % 3 == 0;
                               return GestureDetector(
@@ -373,6 +375,176 @@ class _HomeScreenState extends State<HomeScreen> {
                                           ],
                                         ),
                                       ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      child: ListTile(
+                        dense: true,
+                        contentPadding: EdgeInsets.zero,
+                        title: Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  "Hot New",
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.pushNamed(context, ProductsScreen.id);
+                                },
+                                child: Container(
+                                  padding: EdgeInsets.all(5),
+                                  decoration: BoxDecoration(
+                                    color: mainColor,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Icon(
+                                    Icons.chevron_right,
+                                    color: Colors.black,
+                                    size: 27,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        subtitle: Container(
+                          height: 200,
+                          child: PageView.builder(
+                            controller: PageController(viewportFraction: 0.95),
+                            physics: BouncingScrollPhysics(),
+                            itemCount: Constant.itemCount,
+                            itemBuilder: (context, index) {
+                              bool state = index % 3 == 0;
+                              return GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ProductDetails(state: state),
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  margin: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(25),
+                                    boxShadow: [Constant.boxShadow],
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        child: Image.asset(
+                                          state ? "images/pizza.png" : "images/hamburger.png",
+                                          height: 100,
+                                          width: 100,
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Container(
+                                              alignment: Alignment.centerRight,
+                                              child: IconButton(
+                                                onPressed: () {},
+                                                icon: Icon(
+                                                  state
+                                                      ? CupertinoIcons.heart_fill
+                                                      : CupertinoIcons.heart,
+                                                  color: state ? Colors.red : Colors.black54,
+                                                ),
+                                              ),
+                                            ),
+                                            ListTile(
+                                              contentPadding: EdgeInsets.zero,
+                                              title: Text(
+                                                state ? "Pizza" : "Burger",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.w900,
+                                                ),
+                                              ),
+                                              subtitle: Row(
+                                                children: [
+                                                  Text(
+                                                    state ? "50 min.   " : "30 min.   ",
+                                                    style: TextStyle(
+                                                      color: Colors.black54,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 12.5,
+                                                    ),
+                                                  ),
+                                                  Icon(
+                                                    Icons.star,
+                                                    size: 15,
+                                                    color: mainColor,
+                                                  ),
+                                                  Text(
+                                                    state ? " 5.0" : " 4.3",
+                                                    style: TextStyle(
+                                                      color: Colors.black54,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 12.5,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                            Container(
+                                              child: Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: Container(
+                                                      padding: EdgeInsets.all(10),
+                                                      child: Text(
+                                                        state ? "25 DH" : "49 DH",
+                                                        textAlign: TextAlign.center,
+                                                        style: TextStyle(
+                                                          color: Colors.black,
+                                                          fontWeight: FontWeight.bold,
+                                                          fontSize: 16,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Container(
+                                                      padding: EdgeInsets.all(10),
+                                                      decoration: BoxDecoration(
+                                                        color: mainColor,
+                                                        borderRadius: BorderRadius.only(
+                                                          topLeft: Radius.circular(25),
+                                                          bottomRight: Radius.circular(25),
+                                                        ),
+                                                      ),
+                                                      child: Icon(
+                                                        Icons.add,
+                                                        color: Colors.black,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )
                                     ],
                                   ),
                                 ),
