@@ -13,7 +13,7 @@ class ShoppingScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.only(top: 15),
+          padding: EdgeInsets.only(top: 10),
           child: Column(
             children: [
               SizedBox(
