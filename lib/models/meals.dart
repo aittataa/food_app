@@ -5,17 +5,12 @@ Meals mealsFromJson(String str) => Meals.fromJson(json.decode(str));
 String mealsToJson(Meals data) => json.encode(data.toJson());
 
 class Meals {
-  Meals({
-    this.meals,
-  });
-
   final List<Meal> meals;
+  Meals({this.meals});
 
   factory Meals.fromJson(Map<String, dynamic> json) {
     return Meals(
-      meals: List<Meal>.from(
-        json["meals"].map((x) => Meal.fromJson(x)),
-      ),
+      meals: List<Meal>.from(json["meals"].map((x) => Meal.fromJson(x))),
     );
   }
 

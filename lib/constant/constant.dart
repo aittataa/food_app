@@ -5,6 +5,8 @@ class Constant {
   static const appDesc = "Food Delivery App";
 
   static const int itemCount = 25;
+  static const Duration duration = Duration(milliseconds: 1500);
+  static const Curve curve = Curves.linearToEaseOut;
 
   static const boxShadow = BoxShadow(
     color: Colors.black12,
