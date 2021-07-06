@@ -2,7 +2,7 @@
     package="com.food.food_app">
    <application
         android:label="food_app"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/app_icon_round">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
