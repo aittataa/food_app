@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Constant {
-  static const appTitle = "Food First";
+  static const appTitle = "TALABATAK";
   static const appDesc = "Food Delivery App";
 
   static const int itemCount = 25;

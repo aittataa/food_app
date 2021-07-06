@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:food_app/constant/constant.dart';
 import 'package:food_app/models/categories.dart';
-import 'package:food_app/screens/categories_screen.dart';
-import 'package:food_app/screens/products_screen.dart';
+import 'package:food_app/models/ingredients.dart';
+import 'package:food_app/models/meals.dart';
 import 'package:food_app/screens/shopping_screen.dart';
 import 'package:food_app/services/api_controller.dart';
 import 'package:food_app/widgets/bounce_point.dart';
@@ -118,101 +118,41 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Obx(() {
-                final Categories myList = controller.categoriesList.value;
-                final bool isNotEmpty = myList.categories.isNotEmpty;
+                final Meals myList = controller.categoriesTitleList.value;
+                final bool isNotEmpty = myList.meals.isNotEmpty;
                 if (isNotEmpty) {
-                  return SizedBox(
-                    child: ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      title: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Row(
-                          children: [
-                            Expanded(
+                  return ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    subtitle: SizedBox(
+                      height: 50,
+                      child: ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        padding: EdgeInsets.all(5),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: Constant.itemCount,
+                        itemBuilder: (context, index) {
+                          String strCategory = myList.meals[index].strCategory;
+                          return AnimatedContainer(
+                            duration: Constant.duration,
+                            curve: Constant.curve,
+                            margin: EdgeInsets.all(5),
+                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(100),
+                              boxShadow: [Constant.boxShadow],
+                            ),
+                            child: Center(
                               child: Text(
-                                "Categories",
+                                "$strCategory",
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w900,
-                                  fontSize: 20,
                                 ),
                               ),
                             ),
-                            GestureDetector(
-                              onTap: () => Get.to(() => CategoriesScreen()),
-                              child: Container(
-                                padding: EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                  color: mainColor,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Icon(
-                                  Icons.chevron_right,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      subtitle: SizedBox(
-                        height: 200,
-                        child: GridView.builder(
-                          physics: BouncingScrollPhysics(),
-                          padding: EdgeInsets.all(10),
-                          scrollDirection: Axis.horizontal,
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 1,
-                            mainAxisSpacing: 10,
-                            childAspectRatio: 1.25,
-                          ),
-                          itemCount: Constant.itemCount,
-                          itemBuilder: (context, index) {
-                            //bool state = currentIndex == index;
-                            Category category = myList.categories[index];
-                            return GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  //currentIndex = index;
-                                  //state = currentIndex == index;
-                                  Get.to(() => ProductsScreen());
-                                });
-                              },
-                              child: AnimatedContainer(
-                                duration: Constant.duration,
-                                curve: Constant.curve,
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  //color: state ? mainColor : Colors.white,
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(25),
-                                  boxShadow: [Constant.boxShadow],
-                                ),
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      flex: 2,
-                                      child: Image.network(
-                                        "${category.strCategoryThumb}",
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Center(
-                                        child: Text(
-                                          "${category.strCategory}",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w900,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                        ),
+                          );
+                        },
                       ),
                     ),
                   );
@@ -221,91 +161,41 @@ class _HomeScreenState extends State<HomeScreen> {
                 }
               }),
               Obx(() {
-                final Categories myList = controller.titleCategoriesList.value;
-                //final bool isNotEmpty = myList.categories.isNotEmpty;
-                if (true) {
-                  return SizedBox(
-                    child: ListTile(
-                      contentPadding: EdgeInsets.zero,
-                      title: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Row(
-                          children: [
-                            GestureDetector(
-                              onTap: () => Get.to(() => CategoriesScreen()),
-                              child: Container(
-                                padding: EdgeInsets.all(5),
-                                decoration: BoxDecoration(
-                                  color: mainColor,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Icon(
-                                  Icons.chevron_right,
+                final Meals myList = controller.areaTitleList.value;
+                final bool isNotEmpty = myList.meals.isNotEmpty;
+                if (isNotEmpty) {
+                  return ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    subtitle: SizedBox(
+                      height: 50,
+                      child: ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        padding: EdgeInsets.all(5),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: Constant.itemCount,
+                        itemBuilder: (context, index) {
+                          String strArea = myList.meals[index].strArea;
+                          return AnimatedContainer(
+                            duration: Constant.duration,
+                            curve: Constant.curve,
+                            margin: EdgeInsets.all(5),
+                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(100),
+                              boxShadow: [Constant.boxShadow],
+                            ),
+                            child: Center(
+                              child: Text(
+                                "$strArea",
+                                style: TextStyle(
                                   color: Colors.black,
+                                  fontWeight: FontWeight.w900,
                                 ),
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                      subtitle: SizedBox(
-                        height: 200,
-                        child: GridView.builder(
-                          physics: BouncingScrollPhysics(),
-                          padding: EdgeInsets.all(10),
-                          scrollDirection: Axis.horizontal,
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 1,
-                            mainAxisSpacing: 10,
-                            childAspectRatio: 1.25,
-                          ),
-                          itemCount: Constant.itemCount,
-                          itemBuilder: (context, index) {
-                            //bool state = currentIndex == index;
-                            Category category = myList.categories[index];
-                            return GestureDetector(
-                              onTap: () {
-                                setState(() {
-                                  //currentIndex = index;
-                                  //state = currentIndex == index;
-                                  Get.to(() => ProductsScreen());
-                                });
-                              },
-                              child: AnimatedContainer(
-                                duration: Constant.duration,
-                                curve: Constant.curve,
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  //color: state ? mainColor : Colors.white,
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(25),
-                                  boxShadow: [Constant.boxShadow],
-                                ),
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      flex: 2,
-                                      child: Image.network(
-                                        "${category.strCategoryThumb}",
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Center(
-                                        child: Text(
-                                          "${category.strCategory}",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.w900,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            );
-                          },
-                        ),
+                          );
+                        },
                       ),
                     ),
                   );
@@ -313,6 +203,137 @@ class _HomeScreenState extends State<HomeScreen> {
                   return BouncePoint(size: 32);
                 }
               }),
+              Obx(() {
+                final Ingredients myList = controller.ingredientList.value;
+                final bool isNotEmpty = myList.ingredients.isNotEmpty;
+                if (isNotEmpty) {
+                  return ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    subtitle: SizedBox(
+                      height: 50,
+                      child: ListView.builder(
+                        physics: BouncingScrollPhysics(),
+                        padding: EdgeInsets.all(5),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: Constant.itemCount,
+                        itemBuilder: (context, index) {
+                          Ingredient ingredient = myList.ingredients[index];
+                          return AnimatedContainer(
+                            duration: Constant.duration,
+                            curve: Constant.curve,
+                            margin: EdgeInsets.all(5),
+                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(100),
+                              boxShadow: [Constant.boxShadow],
+                            ),
+                            child: Center(
+                              child: Text(
+                                "${ingredient.strIngredient}",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  );
+                } else {
+                  return BouncePoint(size: 32);
+                }
+              }),
+              Obx(() {
+                final Categories myList = controller.categoriesList.value;
+                final bool isNotEmpty = myList.categories.isNotEmpty;
+                if (isNotEmpty) {
+                  return ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              "Categories",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w900,
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                              color: mainColor,
+                              shape: BoxShape.circle,
+                            ),
+                            child: Icon(
+                              Icons.chevron_right,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    subtitle: SizedBox(
+                      height: 200,
+                      child: GridView.builder(
+                        physics: BouncingScrollPhysics(),
+                        padding: EdgeInsets.all(10),
+                        scrollDirection: Axis.horizontal,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 1,
+                          mainAxisSpacing: 10,
+                          childAspectRatio: 1.25,
+                        ),
+                        itemCount: Constant.itemCount,
+                        itemBuilder: (context, index) {
+                          Category category = myList.categories[index];
+                          return AnimatedContainer(
+                            duration: Constant.duration,
+                            curve: Constant.curve,
+                            padding: EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(25),
+                              boxShadow: [Constant.boxShadow],
+                            ),
+                            child: Column(
+                              children: [
+                                Expanded(
+                                  flex: 2,
+                                  child: Image.network(
+                                    "${category.strCategoryThumb}",
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Center(
+                                    child: Text(
+                                      "${category.strCategory}",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w900,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  );
+                } else {
+                  return BouncePoint(size: 32);
+                }
+              }),
+
               /*
               SizedBox(
                 child: ListTile(

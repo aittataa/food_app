@@ -14,6 +14,12 @@ class Meals {
     );
   }
 
+  factory Meals.stringToJson(Map<String, dynamic> json) {
+    return Meals(
+      meals: List<Meal>.from(json["meals"].map((x) => Meal.fromJson(x))),
+    );
+  }
+
   Map<String, dynamic> toJson() {
     return {
       "meals": List<dynamic>.from(

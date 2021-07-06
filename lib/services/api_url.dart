@@ -15,11 +15,11 @@ class ApiUrl {
   // https://www.themealdb.com/api/json/v1/1/random.php
   static const String RANDOM_API = "/random.php";
 
-  /// TODO :  List all meal categories
+  /// TODO :  List all meal categories => DONE
   // https://www.themealdb.com/api/json/v1/1/categories.php
   static const String CATEGORIES_API = "/categories.php?";
 
-  /// TODO :  List all Categories, Area, Ingredients
+  /// TODO :  List all Categories, Area, Ingredients  => DONE
   // Categories https://www.themealdb.com/api/json/v1/1/list.php?c=list
   // Area https://www.themealdb.com/api/json/v1/1/list.php?a=list
   // Ingredients https://www.themealdb.com/api/json/v1/1/list.php?i=list

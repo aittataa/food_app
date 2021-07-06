@@ -5,19 +5,20 @@ Ingredients ingredientFromJson(String str) => Ingredients.fromJson(json.decode(s
 String ingredientToJson(Ingredients data) => json.encode(data.toJson());
 
 class Ingredients {
-  Ingredients({
-    this.meals,
-  });
+  final List<Ingredient> ingredients;
+  Ingredients({this.ingredients});
 
-  final List<Ingredient> meals;
+  factory Ingredients.fromJson(Map<String, dynamic> json) {
+    return Ingredients(
+      ingredients: List<Ingredient>.from(json["meals"].map((x) => Ingredient.fromJson(x))),
+    );
+  }
 
-  factory Ingredients.fromJson(Map<String, dynamic> json) => Ingredients(
-        meals: List<Ingredient>.from(json["meals"].map((x) => Ingredient.fromJson(x))),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "meals": List<dynamic>.from(meals.map((x) => x.toJson())),
-      };
+  Map<String, dynamic> toJson() {
+    return {
+      "meals": List<dynamic>.from(ingredients.map((x) => x.toJson())),
+    };
+  }
 }
 
 class Ingredient {

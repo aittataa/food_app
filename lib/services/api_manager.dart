@@ -1,4 +1,5 @@
 import 'package:food_app/models/categories.dart';
+import 'package:food_app/models/ingredients.dart';
 import 'package:food_app/models/meals.dart';
 import 'package:food_app/services/api_url.dart';
 import 'package:http/http.dart' as http;
@@ -118,18 +119,16 @@ class ApiManager {
 
   static get getCategoriesList async {
     final Uri api = Uri.parse("${ApiUrl.REST_URL}/${ApiUrl.LIST_API}c=list");
-    // try {
-    var response = await http.get(api);
-    if (response.statusCode == 200) {
-      // print(api.toString());
-      // print(response.body);
-      return categoriesFromJson(response.body);
-    } else {
-      throw Exception("No Data Found");
+    try {
+      var response = await http.get(api);
+      if (response.statusCode == 200) {
+        return mealsFromJson(response.body);
+      } else {
+        throw Exception("No Data Found");
+      }
+    } catch (e) {
+      throw Exception("Something wrong");
     }
-    // } catch (e) {
-    //   throw Exception("Something wrong");
-    // }
   }
 
   static get getAriasList async {
@@ -147,11 +146,11 @@ class ApiManager {
   }
 
   static get getIngredientsList async {
-    final Uri api = Uri.parse("${ApiUrl.REST_URL}/${ApiUrl.LIST_API}a=list");
+    final Uri api = Uri.parse("${ApiUrl.REST_URL}/${ApiUrl.LIST_API}i=list");
     try {
       var response = await http.get(api);
       if (response.statusCode == 200) {
-        return mealsFromJson(response.body);
+        return ingredientFromJson(response.body);
       } else {
         throw Exception("No Data Found");
       }
