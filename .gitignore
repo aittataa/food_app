@@ -1,4 +1,4 @@
-food_app\lib\app\data\data_sources\remote\rest_api.dart
+lib/app/data/data_sources/remote/rest_api.dart
 # Miscellaneous
 *.class
 *.log
