@@ -3,7 +3,7 @@ import 'package:food_app/app/data/data_sources/remote/remote_data_sources.dart';
 import 'package:food_app/app/data/models/categories.dart';
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
+class CategoriesController extends GetxController {
   final RemoteDataSources _dataSources = Get.put(RemoteDataSources());
   var state = false.obs;
   var appResponse = AppResponse().obs;
@@ -12,12 +12,12 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    loadCategoriesTitle();
+    loadCategories();
   }
 
-  loadCategoriesTitle() async {
+  loadCategories() async {
     state.value = true;
-    AppResponse response = await _dataSources.getCategoriesTitle();
+    AppResponse response = await _dataSources.getCategories();
     if (response.success) {
       categories.value = response.response;
     }

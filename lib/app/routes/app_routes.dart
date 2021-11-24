@@ -6,9 +6,13 @@ abstract class Routes {
 
   static const HOME = _Paths.HOME;
   static const INITIAL = _Paths.INITIAL;
+  static const CATEGORIES = _Paths.CATEGORIES;
+  static const SEARCH = _Paths.SEARCH;
 }
 
 abstract class _Paths {
   static const HOME = '/home';
   static const INITIAL = '/initial';
+  static const CATEGORIES = '/categories';
+  static const SEARCH = '/search';
 }
