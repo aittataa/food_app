@@ -1,39 +1,28 @@
 name: food_app
-description: Food App
 version: 1.0.0+1
+description: Food App
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: '>=2.12.0 <3.0.0'
 
-dependencies:
-  flutter:
-    sdk: flutter
-
-  # Package
+dependencies: 
   cupertino_icons: ^1.0.2
-  google_fonts: ^2.0.0
-  get: ^4.1.4
-  http: ^0.13.3
   flutter_spinkit: ^5.0.0
   animated_splash_screen: ^1.1.0
-
-dev_dependencies:
-  #flutter_launcher_name: ^0.0.1
-  #change_app_package_name: ^1.0.0
-  #flutter_launcher_icons: ^0.9.0
-  flutter_test:
+  get: 4.3.8
+  flutter: 
     sdk: flutter
 
-#flutter_launcher_name:
-  #name: "TALABATAK"
+dev_dependencies: 
+  flutter_test: 
+    sdk: flutter
 
-
-flutter_icons:
-  android: "app_icon_round"
+flutter_icons: 
+  android: app_icon_round
+  image_path: icons/app_icon_round.png
   ios: true
-  image_path: "images/app_icon_round.png"
-
 
 flutter:
   uses-material-design: true
   assets:
-    - images/
+    - assets/icons/
+
