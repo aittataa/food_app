@@ -6,7 +6,7 @@ class ApiUrl {
   // by first letter https://www.themealdb.com/api/json/v1/1/search.php?f=a
   static const String SEARCH_API = "/search.php?";
 
-  /// TODO :  meal details by
+  /// TODO :  meal details
   // by id i=
   // http://www.themealdb.com/api/json/v1/1/lookup.php?i=52772
   static const String LOOKUP_API = "/lookup.php?";
