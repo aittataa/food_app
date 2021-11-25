@@ -1,106 +1,1 @@
-import 'package:flutter/material.dart';
-import 'package:food_app/app/config/messages/app_message.dart';
-import 'package:food_app/app/config/responses/app_response.dart';
-import 'package:food_app/app/data/models/meals.dart';
-import 'package:food_app/app/modules/home/controllers/home_controller.dart';
-import 'package:food_app/app/modules/home/widgets/home_body.dart';
-import 'package:food_app/app/shared/bounce_point.dart';
-import 'package:food_app/app/shared/empty_box.dart';
-import 'package:food_app/app/shared/response_error.dart';
-import 'package:get/get.dart';
-
-class HomeView extends StatefulWidget {
-  @override
-  State<HomeView> createState() => _HomeViewState();
-}
-
-class _HomeViewState extends State<HomeView> {
-  final HomeController controller = Get.put(HomeController());
-
-  late AppResponse appResponse = AppResponse();
-  late String label = "American";
-  filterMeals(String value) async {
-    final AppResponse response = await controller.loadFilterMeals("a=$label");
-    setState(() => {appResponse = response});
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    filterMeals(label);
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(AppMessage.appTitle)),
-      body: Obx(() {
-        final bool state = controller.state.value;
-        if (!state) {
-          final AppResponse response = controller.appResponse.value;
-          if (response.success) {
-            final Meals meals = controller.areasTitle.value;
-            final List<Meal> titles = meals.myList ?? [];
-            final bool isNotEmpty = titles.isNotEmpty;
-            if (isNotEmpty) {
-              return Column(
-                children: [
-                  SizedBox(
-                    height: 50,
-                    child: PageView.builder(
-                      padEnds: false,
-                      controller: PageController(viewportFraction: .3),
-                      scrollDirection: Axis.horizontal,
-                      physics: BouncingScrollPhysics(),
-                      itemCount: titles.length,
-                      itemBuilder: (context, i) {
-                        final Meal meal = titles[i];
-                        return TitleShape(
-                          label: meal.strArea!,
-                          onTap: () async {
-                            setState(() => {label = meal.strArea!});
-                            filterMeals(label);
-                          },
-                        );
-                      },
-                    ),
-                  ),
-                  Expanded(child: Obx(() {
-                    final bool state = controller.loadState.value;
-                    if (!state) {
-                      if (response.success) {
-                        final Meals meals = appResponse.response;
-                        final List<Meal> myList = meals.myList ?? [];
-                        final bool isNotEmpty = myList.isNotEmpty;
-                        if (isNotEmpty) {
-                          return Expanded(child: Center(child: Text("${myList.length}")));
-                        } else {
-                          return EmptyBox();
-                        }
-                      } else {
-                        return ResponseError(response: appResponse);
-                      }
-                    } else {
-                      return BouncePoint();
-                    }
-                  })),
-                ],
-              );
-
-              // return HomeBody(
-              //   controller: controller,
-              //   titles: titles..sort((a, b) => a.strArea!.compareTo(b.strArea!)),
-              // );
-            } else {
-              return EmptyBox();
-            }
-          } else {
-            return ResponseError(response: appResponse);
-          }
-        } else {
-          return BouncePoint();
-        }
-      }),
-    );
-  }
-}
+import 'package:flutter/material.dart';import 'package:food_app/app/config/constants/app_constant.dart';import 'package:food_app/app/config/functions/app_function.dart';import 'package:food_app/app/config/messages/app_message.dart';import 'package:food_app/app/config/responses/app_response.dart';import 'package:food_app/app/config/themes/app_theme.dart';import 'package:food_app/app/data/models/meals.dart';import 'package:food_app/app/modules/home/controllers/home_controller.dart';import 'package:food_app/app/shared/bounce_point.dart';import 'package:food_app/app/shared/empty_box.dart';import 'package:food_app/app/shared/meal_shape.dart';import 'package:food_app/app/shared/response_error.dart';import 'package:get/get.dart';class HomeView extends StatefulWidget {  @override  State<HomeView> createState() => _HomeViewState();}class _HomeViewState extends State<HomeView> {  final HomeController controller = Get.put(HomeController());  late PageController pageController = PageController();  late AppResponse appResponse = AppResponse();  late int myIndex;  late String label;  filterMeals(String value) async {    appResponse = await controller.loadFilterMeals("a=$value");  }  @override  void initState() {    super.initState();    myIndex = 0;    pageController = PageController(initialPage: myIndex, viewportFraction: .3);    label = "American";    filterMeals(label);  }  @override  Widget build(BuildContext context) {    return Scaffold(      appBar: AppBar(title: Text(AppMessage.appTitle)),      body: Obx(() {        final bool state = controller.state.value;        if (!state) {          final AppResponse response = controller.appResponse.value;          if (response.success) {            final Meals meals = controller.areasTitle.value;            final List<Meal> titles = meals.myList ?? [];            final bool isNotEmpty = titles.isNotEmpty;            if (isNotEmpty) {              return Column(                children: [                  SizedBox(                    height: 50,                    child: PageView.builder(                      padEnds: false,                      pageSnapping: false,                      controller: pageController,                      scrollDirection: Axis.horizontal,                      physics: BouncingScrollPhysics(),                      itemCount: titles.length,                      itemBuilder: (context, i) {                        final Meal meal = titles[i];                        final bool status = myIndex == i;                        return TitleShape(                          label: meal.strArea!,                          state: status,                          onTap: () async {                            setState(() {                              myIndex = i;                              label = meal.strArea!;                              pageController.animateToPage(                                myIndex,                                duration: AppConstant.durationContainer,                                curve: AppConstant.curve,                              );                            });                            filterMeals(label);                          },                        );                      },                    ),                  ),                  Expanded(                    child: Obx(() {                      final bool state = controller.loadState.value;                      if (!state) {                        if (response.success) {                          final Meals meals = appResponse.response;                          final List<Meal> myList = meals.myList ?? [];                          final bool isNotEmpty = myList.isNotEmpty;                          if (isNotEmpty) {                            return GridView.builder(                              shrinkWrap: true,                              padding: EdgeInsets.all(10),                              scrollDirection: Axis.vertical,                              physics: BouncingScrollPhysics(),                              gridDelegate: AppFunction.gridDelegate(                                crossAxisCount: 2,                                childAspectRatio: .64,                              ),                              itemCount: myList.length,                              itemBuilder: (context, i) {                                final Meal meal = myList[i];                                return MealShape(meal: meal);                              },                            );                          } else {                            return EmptyBox();                          }                        } else {                          return ResponseError(response: appResponse);                        }                      } else {                        return BouncePoint();                      }                    }),                  ),                ],              );            } else {              return EmptyBox();            }          } else {            return ResponseError(response: appResponse);          }        } else {          return BouncePoint();        }      }),    );  }}class TitleShape extends StatelessWidget {  final String label;  final bool state;  final Function()? onTap;  const TitleShape({    Key? key,    required this.label,    required this.state,    this.onTap,  }) : super(key: key);  @override  Widget build(BuildContext context) {    return GestureDetector(      onTap: onTap,      child: AnimatedContainer(        duration: AppConstant.durationContainer,        curve: AppConstant.curve,        margin: EdgeInsets.all(5),        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),        alignment: Alignment.center,        decoration: BoxDecoration(          color: state ? AppTheme.mainColor : AppTheme.transparentColor,          borderRadius: BorderRadius.circular(25),        ),        child: Text(          label,          textAlign: TextAlign.center,          overflow: TextOverflow.ellipsis,          style: TextStyle(            color: AppTheme.primaryTextColor.withOpacity(.75),            fontWeight: FontWeight.w900,            letterSpacing: 1,          ),        ),      ),    );  }}

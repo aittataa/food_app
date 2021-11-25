@@ -1,16 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/app/config/themes/app_theme.dart';
+import 'package:get/get.dart';
 
 class BackIcon extends StatelessWidget {
-  final Function()? onPressed;
-  const BackIcon({Key? key, this.onPressed}) : super(key: key);
+  const BackIcon({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: onPressed,
-      //onPressed: () => Get.back(),
+      onPressed: () => Get.back(),
       padding: EdgeInsets.zero,
       splashColor: AppTheme.transparentColor,
       highlightColor: AppTheme.transparentColor,

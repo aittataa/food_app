@@ -8,6 +8,8 @@ abstract class Routes {
   static const INITIAL = _Paths.INITIAL;
   static const CATEGORIES = _Paths.CATEGORIES;
   static const SEARCH = _Paths.SEARCH;
+  static const DISPLAY = _Paths.DISPLAY;
+  static const DETAILS = _Paths.DETAILS;
 }
 
 abstract class _Paths {
@@ -15,4 +17,6 @@ abstract class _Paths {
   static const INITIAL = '/initial';
   static const CATEGORIES = '/categories';
   static const SEARCH = '/search';
+  static const DISPLAY = '/display';
+  static const DETAILS = '/details';
 }

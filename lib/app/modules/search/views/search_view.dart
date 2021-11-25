@@ -20,8 +20,7 @@ class _SearchViewState extends State<SearchView> {
 
   late AppResponse appResponse = AppResponse();
   searchMeals(String value) async {
-    final AppResponse response = await controller.loadSearchMeals(value);
-    setState(() => {appResponse = response});
+    appResponse = await controller.loadSearchMeals(value);
   }
 
   @override

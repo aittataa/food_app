@@ -3,12 +3,9 @@ import 'package:food_app/app/config/functions/app_function.dart';
 import 'package:food_app/app/data/models/meals.dart';
 import 'package:food_app/app/shared/meal_shape.dart';
 
-class SearchBody extends StatelessWidget {
+class DisplayBody extends StatelessWidget {
   final List<Meal> myList;
-  const SearchBody({
-    Key? key,
-    required this.myList,
-  }) : super(key: key);
+  const DisplayBody({Key? key, required this.myList}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
