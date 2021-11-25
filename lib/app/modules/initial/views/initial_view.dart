@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/app/modules/categories/views/categories_view.dart';
 import 'package:food_app/app/modules/home/views/home_view.dart';
+import 'package:food_app/app/modules/ingredient/views/ingredient_view.dart';
 import 'package:food_app/app/modules/initial/widgets/navigation_bar.dart';
 import 'package:food_app/app/modules/search/views/search_view.dart';
 
@@ -16,7 +17,7 @@ class _InitialViewState extends State<InitialView> {
   @override
   void initState() {
     super.initState();
-    pageIndex = 2;
+    pageIndex = 3;
     pageController = PageController(initialPage: pageIndex);
   }
 
@@ -29,7 +30,7 @@ class _InitialViewState extends State<InitialView> {
           HomeView(),
           SearchView(),
           CategoriesView(),
-          Container(color: Colors.red),
+          IngredientView(),
         ],
       ),
       bottomNavigationBar: NavigationBar(

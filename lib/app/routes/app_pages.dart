@@ -9,6 +9,8 @@ import 'package:food_app/app/modules/display/bindings/display_binding.dart';
 import 'package:food_app/app/modules/display/views/display_view.dart';
 import 'package:food_app/app/modules/home/bindings/home_binding.dart';
 import 'package:food_app/app/modules/home/views/home_view.dart';
+import 'package:food_app/app/modules/ingredient/bindings/ingredient_binding.dart';
+import 'package:food_app/app/modules/ingredient/views/ingredient_view.dart';
 import 'package:food_app/app/modules/initial/bindings/initial_binding.dart';
 import 'package:food_app/app/modules/initial/views/initial_view.dart';
 import 'package:food_app/app/modules/search/bindings/search_binding.dart';
@@ -63,6 +65,11 @@ class AppPages {
       name: _Paths.DETAILS,
       page: () => DetailsView(),
       binding: DetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.INGREDIENT,
+      page: () => IngredientView(),
+      binding: IngredientBinding(),
     ),
   ];
 }

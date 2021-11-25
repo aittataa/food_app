@@ -40,9 +40,9 @@ class NavigationBar extends StatelessWidget {
           activeIcon: Icon(CupertinoIcons.layers_alt_fill),
         ),
         BottomNavigationBarItem(
-          label: AppMessage.labelSettings,
-          icon: Icon(CupertinoIcons.gear),
-          activeIcon: Icon(CupertinoIcons.gear_solid),
+          label: AppMessage.labelIngredients,
+          icon: Icon(CupertinoIcons.rectangle_stack_badge_plus),
+          activeIcon: Icon(CupertinoIcons.rectangle_stack_fill_badge_plus),
         ),
       ],
     );

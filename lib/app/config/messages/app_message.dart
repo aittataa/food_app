@@ -52,7 +52,7 @@ class AppMessage {
   static const String labelCategories = "Categories";
 
   /// TODO : Settings View
-  static const String labelSettings = "Settings";
+  static const String labelIngredients = "Ingredients";
   static const String editButton = "Edit Profile";
   static const String preferencesLabel = "PREFERENCES";
   static const String languageLabel = "Language";
