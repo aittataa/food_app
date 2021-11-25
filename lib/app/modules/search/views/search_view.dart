@@ -17,24 +17,28 @@ class SearchView extends StatefulWidget {
 
 class _SearchViewState extends State<SearchView> {
   final SearchController controller = Get.put(SearchController());
-  final TextEditingController searchController =
-      TextEditingController(text: "");
 
   late AppResponse appResponse = AppResponse();
+  searchMeals(String value) async {
+    final AppResponse response = await controller.loadSearchMeals(value);
+    setState(() => {appResponse = response});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    searchMeals("a");
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(AppMessage.labelSearch),
-      ),
+      appBar: AppBar(title: Text(AppMessage.labelSearch)),
       body: Column(
         children: [
           SearchBar(
-            searchController: searchController,
             onChanged: (value) async {
-              AppResponse response = await controller.loadSearchMeals(value);
-              setState(() => {appResponse = response});
+              searchMeals(value);
             },
           ),
           Expanded(
@@ -46,9 +50,7 @@ class _SearchViewState extends State<SearchView> {
                   final List<Meal> myList = meals.myList ?? [];
                   final bool isNotEmpty = myList.isNotEmpty;
                   if (isNotEmpty) {
-                    return SearchBody(
-                        myList: myList
-                          ..sort((a, b) => b.idMeal!.compareTo(a.idMeal!)));
+                    return SearchBody(myList: myList..sort((a, b) => b.idMeal!.compareTo(a.idMeal!)));
                   } else {
                     return EmptyBox();
                   }

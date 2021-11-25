@@ -17,7 +17,7 @@ class CategoriesController extends GetxController {
 
   loadCategories() async {
     state.value = true;
-    AppResponse response = await _dataSources.getCategories();
+    AppResponse response = await _dataSources.getCategories;
     if (response.success) {
       categories.value = response.response;
     }

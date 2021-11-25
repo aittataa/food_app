@@ -26,8 +26,7 @@ class CategoriesView extends StatelessWidget {
             final bool isNotEmpty = myList.isNotEmpty;
             if (isNotEmpty) {
               return CategoriesBody(
-                myList: myList
-                  ..sort((a, b) => b.idCategory!.compareTo(a.idCategory!)),
+                myList: myList..sort((a, b) => a.strCategory!.compareTo(b.strCategory!)),
               );
             } else {
               return EmptyBox();

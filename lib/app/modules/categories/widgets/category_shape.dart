@@ -17,8 +17,8 @@ class CategoryShape extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(25),
         border: Border.all(
-          color: AppTheme.mainColor.withOpacity(.25),
-          width: 1.5,
+          color: AppTheme.mainColor.withOpacity(.5),
+          width: 1,
         ),
       ),
       child: Column(
@@ -29,7 +29,9 @@ class CategoryShape extends StatelessWidget {
                 color: AppTheme.primaryBackColor,
                 borderRadius: BorderRadius.circular(25),
               ),
-              child: ImageNetwork(image: "${category.strCategoryThumb}"),
+              child: ImageNetwork(
+                image: "${category.strCategoryThumb}",
+              ),
             ),
           ),
           Padding(

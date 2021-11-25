@@ -6,16 +6,12 @@ class AppMessage {
   static const String appLogo = "assets/images/logo.png";
   static const String appIcon = "assets/images/app_icon.png";
   static const String appIconRound = "assets/images/app_icon_round.png";
-  static const String placeHolder =
-      "https://vue.pixelstrap.com/multikart/_nuxt/img/6.64e2e9c.jpg";
+  static const String placeHolder = "https://vue.pixelstrap.com/multikart/_nuxt/img/6.64e2e9c.jpg";
   static const String facebookIcon = "assets/images/facebook.png";
   static const String googleIcon = "assets/images/google.png";
-  static const String facebookPath =
-      "https://raw.githubusercontent.com/aittataa/apco_app/master/assets/images/facebook.png";
-  static const String googlePath =
-      "https://raw.githubusercontent.com/aittataa/apco_app/master/assets/images/google.png";
-  static const String userPlaceHolder =
-      "https://www.getnow.pk/wp-content/uploads/2016/05/2.0-6.jpg";
+  static const String facebookPath = "https://raw.githubusercontent.com/aittataa/apco_app/master/assets/images/facebook.png";
+  static const String googlePath = "https://raw.githubusercontent.com/aittataa/apco_app/master/assets/images/google.png";
+  static const String userPlaceHolder = "https://www.getnow.pk/wp-content/uploads/2016/05/2.0-6.jpg";
   //"https://cdn.dribbble.com/users/699610/avatars/normal/f692961e526daf39d8f15cb6a0c176aa.png";
 
   /// TODO : Login View
@@ -39,7 +35,8 @@ class AppMessage {
 
   /// TODO : Initial View
   //static const String appTitle = "MultiKart";
-  static const String appTitle = "TALABATAK";
+  // static const String appTitle = "TALABATAK";
+  static const String appTitle = "Wasfaa";
   //static const appDesc = "Food Delivery App";
 
   /// TODO : Home View

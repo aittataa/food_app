@@ -3,35 +3,32 @@ import 'package:food_app/app/config/themes/app_theme.dart';
 import 'package:food_app/app/data/models/meals.dart';
 import 'package:food_app/app/modules/home/controllers/home_controller.dart';
 
-class HomeBody extends StatelessWidget {
+class HomeBar extends StatelessWidget {
   final HomeController controller;
   final List<Meal> titles;
-  const HomeBody({
+  final Function()? onTap;
+  const HomeBar({
     Key? key,
     required this.controller,
     required this.titles,
+    this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 50,
-          child: ListView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            physics: BouncingScrollPhysics(),
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            itemCount: titles.length,
-            itemBuilder: (context, i) {
-              final Meal meal = titles[i];
-              return TitleShape(label: meal.strArea!, onTap: () {});
-            },
-          ),
-        ),
-        Expanded(child: Center(child: Text("Hello World"))),
-      ],
+    return SizedBox(
+      height: 50,
+      child: ListView.builder(
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        physics: BouncingScrollPhysics(),
+        padding: EdgeInsets.symmetric(horizontal: 5),
+        itemCount: titles.length,
+        itemBuilder: (context, i) {
+          final Meal meal = titles[i];
+          return TitleShape(label: meal.strArea!, onTap: onTap);
+        },
+      ),
     );
   }
 }
@@ -47,7 +44,7 @@ class TitleShape extends StatelessWidget {
       onTap: onTap,
       child: Container(
         margin: EdgeInsets.all(5),
-        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: AppTheme.mainColor,
@@ -56,7 +53,6 @@ class TitleShape extends StatelessWidget {
         child: Text(
           label,
           textAlign: TextAlign.center,
-          overflow: TextOverflow.ellipsis,
           style: TextStyle(
             color: AppTheme.primaryTextColor,
             fontWeight: FontWeight.w900,

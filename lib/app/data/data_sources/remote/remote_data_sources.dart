@@ -11,14 +11,28 @@ class RemoteDataSources extends GetConnect {
     httpClient.baseUrl = RestApi.apiUrl;
   }
 
-  _getUrl(String type) {
-    return Uri.parse("${httpClient.baseUrl}$type");
+  _getUrl(String type) => Uri.parse("${httpClient.baseUrl}$type");
+
+  getFilterMeals(String label) async {
+    final Uri uri = _getUrl(RestApi.FILTER_API + label);
+    final response = await http.get(uri);
+    final AppResponse appResponse = await AppResponse.requestResponse(response);
+    if (appResponse.success) {
+      return AppResponse(
+        success: appResponse.success,
+        messageServer: appResponse.messageServer,
+        messageUser: appResponse.messageUser,
+        response: mealsFromJson(appResponse.response),
+      );
+    } else {
+      return appResponse;
+    }
   }
 
   getSearchMeals(String label) async {
     final Uri uri = _getUrl(RestApi.SEARCH_API + label);
     final response = await http.get(uri);
-    AppResponse appResponse = await AppResponse.requestResponse(response);
+    final AppResponse appResponse = await AppResponse.requestResponse(response);
 
     if (appResponse.success) {
       return AppResponse(
@@ -32,27 +46,26 @@ class RemoteDataSources extends GetConnect {
     }
   }
 
-  getCategoriesTitle() async {
-    final Uri uri = _getUrl(RestApi.LIST_API + "c=list");
+  getListTitles(String label) async {
+    final Uri uri = _getUrl("${RestApi.LIST_API}$label=list");
     final response = await http.get(uri);
-    AppResponse appResponse = await AppResponse.requestResponse(response);
-
+    final AppResponse appResponse = await AppResponse.requestResponse(response);
     if (appResponse.success) {
       return AppResponse(
         success: appResponse.success,
         messageServer: appResponse.messageServer,
         messageUser: appResponse.messageUser,
-        response: categoriesFromJson(appResponse.response),
+        response: mealsFromJson(appResponse.response),
       );
     } else {
       return appResponse;
     }
   }
 
-  getCategories() async {
+  get getCategories async {
     final Uri uri = _getUrl(RestApi.CATEGORIES_API);
     final response = await http.get(uri);
-    AppResponse appResponse = await AppResponse.requestResponse(response);
+    final AppResponse appResponse = await AppResponse.requestResponse(response);
     if (appResponse.success) {
       return AppResponse(
         success: appResponse.success,
