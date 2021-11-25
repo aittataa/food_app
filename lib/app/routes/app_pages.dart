@@ -15,6 +15,8 @@ import 'package:food_app/app/modules/initial/bindings/initial_binding.dart';
 import 'package:food_app/app/modules/initial/views/initial_view.dart';
 import 'package:food_app/app/modules/search/bindings/search_binding.dart';
 import 'package:food_app/app/modules/search/views/search_view.dart';
+import 'package:food_app/app/modules/splash/bindings/splash_binding.dart';
+import 'package:food_app/app/modules/splash/views/splash_view.dart';
 
 part 'app_routes.dart';
 
@@ -70,6 +72,11 @@ class AppPages {
       name: _Paths.INGREDIENT,
       page: () => IngredientView(),
       binding: IngredientBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPLASH,
+      page: () => SplashView(),
+      binding: SplashBinding(),
     ),
   ];
 }
