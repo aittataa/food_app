@@ -27,7 +27,7 @@ class AppConstant {
   static const Duration durationAnimation = Duration(milliseconds: 1000);
   static const Duration durationCheckedBox = Duration(milliseconds: 500);
   static const Duration durationGender = Duration(milliseconds: 250);
-  static const Duration durationContainer = Duration(milliseconds: 1500);
+  static const Duration durationContainer = Duration(milliseconds: 1000);
   static const Duration duration = Duration(milliseconds: 1500);
 
   /// TODO : BoxShadow

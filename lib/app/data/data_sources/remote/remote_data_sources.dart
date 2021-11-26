@@ -1,6 +1,7 @@
 import 'package:food_app/app/config/responses/app_response.dart';
 import 'package:food_app/app/data/data_sources/remote/rest_api.dart';
 import 'package:food_app/app/data/models/categories.dart';
+import 'package:food_app/app/data/models/ingredients.dart';
 import 'package:food_app/app/data/models/meals.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -12,6 +13,22 @@ class RemoteDataSources extends GetConnect {
   }
 
   _getUrl(String type) => Uri.parse("${httpClient.baseUrl}$type");
+
+  get getIngredients async {
+    final Uri uri = _getUrl("${RestApi.LIST_API}i=list");
+    final response = await http.get(uri);
+    final AppResponse appResponse = await AppResponse.requestResponse(response);
+    if (appResponse.success) {
+      return AppResponse(
+        success: appResponse.success,
+        messageServer: appResponse.messageServer,
+        messageUser: appResponse.messageUser,
+        response: ingredientsFromJson(appResponse.response),
+      );
+    } else {
+      return appResponse;
+    }
+  }
 
   getFilterMeals(String label) async {
     final Uri uri = _getUrl(RestApi.FILTER_API + label);
