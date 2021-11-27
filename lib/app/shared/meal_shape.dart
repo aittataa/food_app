@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/app/config/constants/app_constant.dart';
 import 'package:food_app/app/config/themes/app_theme.dart';
@@ -8,75 +9,105 @@ import 'package:get/get.dart';
 
 class MealShape extends StatelessWidget {
   final Meal meal;
-  const MealShape({
+  MealShape({
     Key? key,
     required this.meal,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Get.to(() => DetailsView(meal: meal)),
-      child: Container(
-        decoration: BoxDecoration(
-          color: AppTheme.primaryBackColor,
-          borderRadius: BorderRadius.circular(25),
-          boxShadow: [AppConstant.boxShadow],
-        ),
-        child: Column(
-          children: [
-            Expanded(
-              child: Container(
-                decoration: BoxDecoration(
-                  color: AppTheme.primaryBackColor,
-                  borderRadius: BorderRadius.circular(25),
-                ),
-                child: ImageNetwork(
-                  image: "${meal.strMealThumb}",
-                  fit: BoxFit.cover,
-                ),
-              ),
+    return StatefulBuilder(
+      builder: (context, setState) {
+        return GestureDetector(
+          onTap: () => Get.to(() => DetailsView(meal: meal)),
+          child: Container(
+            decoration: BoxDecoration(
+              color: AppTheme.primaryBackColor,
+              borderRadius: BorderRadius.circular(25),
+              boxShadow: [AppConstant.boxShadow],
             ),
-            if (meal.strArea != null)
-              ListTile(
-                contentPadding: EdgeInsets.symmetric(horizontal: 5),
-                minVerticalPadding: 0,
-                title: Text(
-                  "${meal.strMeal}",
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: AppTheme.primaryTextColor.withOpacity(.75),
-                    fontWeight: FontWeight.w900,
-                  ),
+            child: Stack(
+              children: [
+                Column(
+                  children: [
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: AppTheme.primaryBackColor,
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: ImageNetwork(
+                          image: "${meal.strMealThumb}",
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
+                    if (meal.strArea != null)
+                      ListTile(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 5),
+                        minVerticalPadding: 0,
+                        title: Text(
+                          "${meal.strMeal}",
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: AppTheme.primaryTextColor.withOpacity(.75),
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                        subtitle: Text(
+                          "${meal.strArea}",
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: AppTheme.primaryTextColor.withOpacity(.64),
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      )
+                    else
+                      ListTile(
+                        contentPadding: EdgeInsets.symmetric(horizontal: 5),
+                        minVerticalPadding: 0,
+                        title: Text(
+                          "${meal.strMeal}",
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: AppTheme.primaryTextColor.withOpacity(.75),
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ),
+                  ],
                 ),
-                subtitle: Text(
-                  "${meal.strArea}",
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: AppTheme.primaryTextColor.withOpacity(.64),
-                    fontWeight: FontWeight.w700,
+                Align(
+                  alignment: Alignment.topRight,
+                  child: GestureDetector(
+                    onTap: () async {
+                      setState(() {
+                        meal.updateState;
+                      });
+                    },
+                    child: Container(
+                      margin: EdgeInsets.all(5),
+                      padding: EdgeInsets.all(7.5),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppTheme.secondaryBackColor.withOpacity(.75),
+                      ),
+                      child: Icon(
+                        meal.state ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
+                        color: meal.state ? AppTheme.mainIconColor : AppTheme.secondaryIconColor,
+                      ),
+                    ),
                   ),
-                ),
-              )
-            else
-              ListTile(
-                contentPadding: EdgeInsets.symmetric(horizontal: 5),
-                minVerticalPadding: 0,
-                title: Text(
-                  "${meal.strMeal}",
-                  textAlign: TextAlign.center,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: AppTheme.primaryTextColor.withOpacity(.75),
-                    fontWeight: FontWeight.w900,
-                  ),
-                ),
-              ),
-          ],
-        ),
-      ),
+                )
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

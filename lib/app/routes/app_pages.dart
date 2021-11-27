@@ -7,6 +7,8 @@ import 'package:food_app/app/modules/details/bindings/details_binding.dart';
 import 'package:food_app/app/modules/details/views/details_view.dart';
 import 'package:food_app/app/modules/display/bindings/display_binding.dart';
 import 'package:food_app/app/modules/display/views/display_view.dart';
+import 'package:food_app/app/modules/favorite/bindings/favorite_binding.dart';
+import 'package:food_app/app/modules/favorite/views/favorite_view.dart';
 import 'package:food_app/app/modules/home/bindings/home_binding.dart';
 import 'package:food_app/app/modules/home/views/home_view.dart';
 import 'package:food_app/app/modules/ingredient/bindings/ingredient_binding.dart';
@@ -77,6 +79,11 @@ class AppPages {
       name: _Paths.SPLASH,
       page: () => SplashView(),
       binding: SplashBinding(),
+    ),
+    GetPage(
+      name: _Paths.FAVORITE,
+      page: () => FavoriteView(),
+      binding: FavoriteBinding(),
     ),
   ];
 }

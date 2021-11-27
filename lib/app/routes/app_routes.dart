@@ -12,6 +12,7 @@ abstract class Routes {
   static const DETAILS = _Paths.DETAILS;
   static const INGREDIENT = _Paths.INGREDIENT;
   static const SPLASH = _Paths.SPLASH;
+  static const FAVORITE = _Paths.FAVORITE;
 }
 
 abstract class _Paths {
@@ -23,4 +24,5 @@ abstract class _Paths {
   static const DETAILS = '/details';
   static const INGREDIENT = '/ingredient';
   static const SPLASH = '/splash';
+  static const FAVORITE = '/favorite';
 }

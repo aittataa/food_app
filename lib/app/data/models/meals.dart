@@ -18,6 +18,7 @@ class Meals {
 
 class Meal {
   final String? idMeal;
+  late bool state;
   final String? strMeal;
   final String? strDrinkAlternate;
   final String? strCategory;
@@ -93,6 +94,7 @@ class Meal {
 
   Meal({
     this.idMeal,
+    this.state = false,
     this.strMeal,
     this.strDrinkAlternate,
     this.strCategory,
@@ -244,4 +246,6 @@ class Meal {
       strMeasure20: json["strMeasure20"] == null ? null : json["strMeasure20"],
     );
   }
+
+  get updateState => {state = !state};
 }
