@@ -19,7 +19,7 @@ class TitleShape extends StatelessWidget {
       child: AnimatedContainer(
         duration: AppConstant.durationContainer,
         curve: AppConstant.curve,
-        margin: EdgeInsets.symmetric(horizontal: 1),
+        margin: EdgeInsets.symmetric(horizontal: 2.5),
         padding: EdgeInsets.symmetric(vertical: 5, horizontal: 25),
         alignment: Alignment.center,
         decoration: BoxDecoration(
