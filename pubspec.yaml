@@ -4,14 +4,15 @@ description: Food App
 environment: 
   sdk: '>=2.12.0 <3.0.0'
 
-dependencies: 
-  http: ^0.13.4
+dependencies:
   cupertino_icons: ^1.0.2
-  flutter_spinkit: ^5.0.0
-  animated_splash_screen: ^1.1.0
   get: 4.3.8
+  http: ^0.13.4
   cached_network_image: 3.1.0+1
-  flutter: 
+  auto_size_text: 3.0.0
+  animated_splash_screen: ^1.1.0
+  flutter_spinkit: ^5.0.0
+  flutter:
     sdk: flutter
 
 dev_dependencies: 
