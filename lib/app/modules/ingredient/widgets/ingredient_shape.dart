@@ -1,29 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/app/config/themes/app_theme.dart';
-import 'package:food_app/app/data/models/categories.dart';
+import 'package:food_app/app/data/models/ingredients.dart';
 import 'package:food_app/app/modules/display/views/display_view.dart';
 import 'package:food_app/app/routes/app_pages.dart';
 import 'package:food_app/app/shared/image_network.dart';
 import 'package:get/get.dart';
 
-class CategoryShape extends StatelessWidget {
-  final Category category;
-  const CategoryShape({Key? key, required this.category}) : super(key: key);
+class IngredientShape extends StatelessWidget {
+  final Ingredient ingredient;
+  const IngredientShape({Key? key, required this.ingredient}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.to(() => DisplayView(title: category.strCategory, page: Routes.CATEGORIES)),
+      onTap: () => Get.to(() => DisplayView(title: ingredient.strIngredient, page: Routes.INGREDIENT)),
       child: Container(
         decoration: BoxDecoration(
           color: AppTheme.primaryBackColor.withOpacity(.5),
           borderRadius: BorderRadius.circular(25),
-          border: Border.all(
-            color: AppTheme.mainColor.withOpacity(.5),
-            width: 1.5,
-          ),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Expanded(
               child: Container(
@@ -32,14 +29,14 @@ class CategoryShape extends StatelessWidget {
                   borderRadius: BorderRadius.circular(25),
                 ),
                 child: ImageNetwork(
-                  image: "${category.strCategoryThumb}",
+                  image: "${ingredient.strIngredientThumb}",
                 ),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(5),
               child: Text(
-                "${category.strCategory}",
+                "${ingredient.strIngredient}",
                 textAlign: TextAlign.center,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(

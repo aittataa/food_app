@@ -14,6 +14,22 @@ class RemoteDataSources extends GetConnect {
 
   _getUrl(String type) => Uri.parse("${httpClient.baseUrl}$type");
 
+  getLookupMeal(String id) async {
+    final Uri uri = _getUrl("${RestApi.LOOKUP_API}i=$id");
+    final response = await http.get(uri);
+    final AppResponse appResponse = await AppResponse.requestResponse(response);
+    if (appResponse.success) {
+      return AppResponse(
+        success: appResponse.success,
+        messageServer: appResponse.messageServer,
+        messageUser: appResponse.messageUser,
+        response: mealsFromJson(appResponse.response),
+      );
+    } else {
+      return appResponse;
+    }
+  }
+
   get getIngredients async {
     final Uri uri = _getUrl("${RestApi.LIST_API}i=list");
     final response = await http.get(uri);

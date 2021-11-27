@@ -7,8 +7,7 @@ import 'package:food_app/app/shared/bounce_point.dart';
 class ImageNetwork extends StatelessWidget {
   final String image;
   final BoxFit fit;
-  const ImageNetwork({Key? key, required this.image, this.fit = BoxFit.contain})
-      : super(key: key);
+  const ImageNetwork({Key? key, required this.image, this.fit = BoxFit.contain}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

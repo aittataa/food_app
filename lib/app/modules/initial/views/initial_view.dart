@@ -17,7 +17,7 @@ class _InitialViewState extends State<InitialView> {
   @override
   void initState() {
     super.initState();
-    pageIndex = 0;
+    pageIndex = 3;
     pageController = PageController(initialPage: pageIndex);
   }
 

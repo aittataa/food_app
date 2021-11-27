@@ -3,6 +3,7 @@ import 'package:food_app/app/config/responses/app_response.dart';
 import 'package:food_app/app/data/models/meals.dart';
 import 'package:food_app/app/modules/display/controllers/display_controller.dart';
 import 'package:food_app/app/modules/display/widgets/display_body.dart';
+import 'package:food_app/app/routes/app_pages.dart';
 import 'package:food_app/app/shared/back_icon.dart';
 import 'package:food_app/app/shared/bounce_point.dart';
 import 'package:food_app/app/shared/empty_box.dart';
@@ -10,8 +11,9 @@ import 'package:food_app/app/shared/response_error.dart';
 import 'package:get/get.dart';
 
 class DisplayView extends StatefulWidget {
+  final String? page;
   final String? title;
-  const DisplayView({Key? key, this.title}) : super(key: key);
+  const DisplayView({Key? key, this.title, this.page}) : super(key: key);
   @override
   State<DisplayView> createState() => _DisplayViewState();
 }
@@ -19,19 +21,18 @@ class DisplayView extends StatefulWidget {
 class _DisplayViewState extends State<DisplayView> {
   final DisplayController controller = Get.put(DisplayController());
   late AppResponse appResponse = AppResponse();
-  late String title;
 
   filterMeals(String value) async {
-    Future.delayed(Duration.zero, () async {
+    if (widget.page == Routes.CATEGORIES)
       appResponse = await controller.loadFilterMeals("c=$value");
-    });
+    else
+      appResponse = await controller.loadFilterMeals("i=$value");
   }
 
   @override
   void initState() {
     super.initState();
-    title = widget.title!;
-    filterMeals(title);
+    filterMeals(widget.title!);
   }
 
   @override
@@ -39,7 +40,7 @@ class _DisplayViewState extends State<DisplayView> {
     return Scaffold(
       appBar: AppBar(
         leading: BackIcon(),
-        title: Text(title),
+        title: Text(widget.title!),
       ),
       body: Obx(() {
         final bool state = controller.state.value;
