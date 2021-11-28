@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:food_app/app/config/constants/app_constant.dart';
 import 'package:food_app/app/config/themes/app_theme.dart';
- 
+
 class BouncePoint extends StatelessWidget {
   final bool? state;
   final double size;
@@ -21,19 +21,19 @@ class BouncePoint extends StatelessWidget {
       case true:
         return SpinKitThreeBounce(
           size: size,
-          color: color ?? AppTheme.secondaryBackColor, //.withOpacity(.5),
+          color: color ?? AppTheme.secondaryBackColor,
           duration: AppConstant.durationSplash,
         );
       case false:
         return SpinKitCubeGrid(
           size: size,
-          color: color ?? AppTheme.secondaryBackColor, //.withOpacity(.5),
+          color: color ?? AppTheme.secondaryBackColor,
           duration: AppConstant.durationSplash,
         );
       default:
         return SpinKitSquareCircle(
           size: size,
-          color: color ?? AppTheme.secondaryBackColor, //.withOpacity(.5),
+          color: color ?? AppTheme.secondaryBackColor,
           duration: AppConstant.durationSplash,
         );
     }
