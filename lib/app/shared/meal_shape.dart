@@ -22,7 +22,7 @@ class MealShape extends StatelessWidget {
   Widget build(BuildContext context) {
     return StatefulBuilder(
       builder: (context, setState) {
-        meal.state = true; //controller.getFavorite("${meal.idMeal}") ?? false;
+        meal.state = controller.getFavorite("${meal.idMeal}") ?? false;
         return GestureDetector(
           onTap: () => Get.to(() => DetailsView(meal: meal)),
           child: Container(
