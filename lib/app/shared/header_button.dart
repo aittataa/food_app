@@ -14,17 +14,14 @@ class HeaderButton extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppTheme.mainColor,
         borderRadius: BorderRadius.circular(10),
+        //boxShadow: [AppConstant.boxShadow],
       ),
       child: IconButton(
         onPressed: () => Get.to(() => FavoriteView()),
-        padding: EdgeInsets.zero,
-        color: AppTheme.transparentColor,
+        color: AppTheme.secondaryIconColor,
         splashColor: AppTheme.transparentColor,
         highlightColor: AppTheme.transparentColor,
-        icon: Icon(
-          CupertinoIcons.heart_fill,
-          color: AppTheme.secondaryIconColor,
-        ),
+        icon: Icon(CupertinoIcons.heart_fill),
       ),
     );
   }

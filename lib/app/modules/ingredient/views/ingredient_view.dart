@@ -3,8 +3,10 @@ import 'package:food_app/app/config/messages/app_message.dart';
 import 'package:food_app/app/config/responses/app_response.dart';
 import 'package:food_app/app/data/models/ingredients.dart';
 import 'package:food_app/app/modules/ingredient/widgets/ingredient_body.dart';
+import 'package:food_app/app/shared/back_icon.dart';
 import 'package:food_app/app/shared/bounce_point.dart';
 import 'package:food_app/app/shared/empty_box.dart';
+import 'package:food_app/app/shared/header_button.dart';
 import 'package:food_app/app/shared/response_error.dart';
 import 'package:get/get.dart';
 
@@ -35,7 +37,11 @@ class _IngredientViewState extends State<IngredientView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(AppMessage.labelIngredients)),
+      appBar: AppBar(
+        leading: BackIcon(),
+        title: Text(AppMessage.labelIngredients),
+        actions: [HeaderButton()],
+      ),
       body: Obx(() {
         final bool state = controller.state.value;
         if (!state) {

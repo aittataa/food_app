@@ -4,8 +4,10 @@ import 'package:food_app/app/config/responses/app_response.dart';
 import 'package:food_app/app/data/models/categories.dart';
 import 'package:food_app/app/modules/categories/controllers/categories_controller.dart';
 import 'package:food_app/app/modules/categories/widgets/categories_body.dart';
+import 'package:food_app/app/shared/back_icon.dart';
 import 'package:food_app/app/shared/bounce_point.dart';
 import 'package:food_app/app/shared/empty_box.dart';
+import 'package:food_app/app/shared/header_button.dart';
 import 'package:food_app/app/shared/response_error.dart';
 import 'package:get/get.dart';
 
@@ -15,7 +17,11 @@ class CategoriesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(AppMessage.labelCategories)),
+      appBar: AppBar(
+        leading: BackIcon(),
+        title: Text(AppMessage.labelCategories),
+        actions: [HeaderButton()],
+      ),
       body: Obx(() {
         final bool state = controller.state.value;
         if (!state) {

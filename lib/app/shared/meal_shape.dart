@@ -4,20 +4,25 @@ import 'package:food_app/app/config/constants/app_constant.dart';
 import 'package:food_app/app/config/themes/app_theme.dart';
 import 'package:food_app/app/data/models/meals.dart';
 import 'package:food_app/app/modules/details/views/details_view.dart';
+import 'package:food_app/app/modules/favorite/controllers/favorite_controller.dart';
 import 'package:food_app/app/shared/image_network.dart';
 import 'package:get/get.dart';
 
 class MealShape extends StatelessWidget {
+  final FavoriteController controller = Get.put(FavoriteController());
   final Meal meal;
+  final bool state;
   MealShape({
     Key? key,
     required this.meal,
+    this.state = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return StatefulBuilder(
       builder: (context, setState) {
+        meal.state = controller.getFavorite("${meal.idMeal}") ?? false;
         return GestureDetector(
           onTap: () => Get.to(() => DetailsView(meal: meal)),
           child: Container(
@@ -85,9 +90,11 @@ class MealShape extends StatelessWidget {
                   alignment: Alignment.topRight,
                   child: GestureDetector(
                     onTap: () async {
-                      setState(() {
-                        meal.updateState;
-                      });
+                      setState(() => {meal.updateState});
+                      final String id = meal.idMeal!;
+                      final bool state = meal.state;
+                      var data = await controller.setFavorite(id, state);
+                      print(data);
                     },
                     child: Container(
                       margin: EdgeInsets.all(5),

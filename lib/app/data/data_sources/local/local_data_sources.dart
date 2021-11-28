@@ -16,4 +16,8 @@ class LocalDataSources extends GetConnect {
   setFavorite(String id, bool state) async {
     return await _session.setBool(id, state);
   }
+
+  get getAllFavorite {
+    return _session.getKeys();
+  }
 }

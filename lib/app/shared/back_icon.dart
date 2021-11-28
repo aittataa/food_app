@@ -8,12 +8,20 @@ class BackIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () => Get.back(),
-      padding: EdgeInsets.zero,
-      splashColor: AppTheme.transparentColor,
-      highlightColor: AppTheme.transparentColor,
-      icon: Icon(CupertinoIcons.back, color: AppTheme.primaryIconColor),
+    return Container(
+      margin: EdgeInsets.all(5),
+      decoration: BoxDecoration(
+        color: AppTheme.primaryBackColor,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: IconButton(
+        onPressed: () => Get.back(),
+        padding: EdgeInsets.zero,
+        color: AppTheme.primaryIconColor,
+        splashColor: AppTheme.transparentColor,
+        highlightColor: AppTheme.transparentColor,
+        icon: Icon(CupertinoIcons.back),
+      ),
     );
   }
 }

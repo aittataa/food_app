@@ -4,8 +4,10 @@ import 'package:food_app/app/config/responses/app_response.dart';
 import 'package:food_app/app/data/models/meals.dart';
 import 'package:food_app/app/modules/search/controllers/search_controller.dart';
 import 'package:food_app/app/modules/search/widgets/search_body.dart';
+import 'package:food_app/app/shared/back_icon.dart';
 import 'package:food_app/app/shared/bounce_point.dart';
 import 'package:food_app/app/shared/empty_box.dart';
+import 'package:food_app/app/shared/header_button.dart';
 import 'package:food_app/app/shared/response_error.dart';
 import 'package:food_app/app/shared/search_bar.dart';
 import 'package:get/get.dart';
@@ -32,7 +34,11 @@ class _SearchViewState extends State<SearchView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(AppMessage.labelSearch)),
+      appBar: AppBar(
+        leading: BackIcon(),
+        title: Text(AppMessage.labelSearch),
+        actions: [HeaderButton()],
+      ),
       body: Column(
         children: [
           SearchBar(

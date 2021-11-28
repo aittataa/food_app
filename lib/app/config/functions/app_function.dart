@@ -3,7 +3,6 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:food_app/app/config/constants/app_constant.dart';
 import 'package:food_app/app/config/themes/app_theme.dart';
 import 'package:get/get.dart';
 
@@ -35,12 +34,12 @@ class AppFunction {
     );
   }
 
-  static animateToPage(int index) {
-    AppConstant.pageIndex = index;
-    AppConstant.controller.jumpToPage(
-      AppConstant.pageIndex,
-    );
-  }
+  // static animateToPage(int index) {
+  //   AppConstant.pageIndex = index;
+  //   AppConstant.controller.jumpToPage(
+  //     AppConstant.pageIndex,
+  //   );
+  // }
 
   static gridDelegate({
     int crossAxisCount = 1,

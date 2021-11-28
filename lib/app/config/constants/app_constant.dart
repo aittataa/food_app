@@ -12,8 +12,8 @@ class AppConstant {
   static double screenHeight = Get.height;
 
   /// TODO : Page Index
-  static int pageIndex = 0;
-  static PageController controller = PageController();
+  // static int pageIndex = 0;
+  // static PageController controller = PageController();
 
   /// TODO : Curves
   static const Curve curve = Curves.linearToEaseOut;
