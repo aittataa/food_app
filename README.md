@@ -1,8 +1,8 @@
 # food_app
 
-Food App Recipe UI/UX Design and Getx State Management with Get CLI Clean Code Pattern 
+Wasfa App Recipe.
 
-## Screen Shots
+## Screen Shots :
 
 ![item](https://user-images.githubusercontent.com/39503536/143781038-e0ae2c6b-0750-4a0a-b155-7a0409b6e7f1.png)
 ![Screenshot_01](https://user-images.githubusercontent.com/39503536/143784862-dbe095c6-7837-4763-bb22-3a938ae4d84a.png)
