@@ -5,7 +5,6 @@ import 'package:food_app/app/config/themes/app_theme.dart';
 import 'package:food_app/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   AppFunction.configureDependencies();
@@ -19,7 +18,7 @@ class FoodFirst extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      smartManagement: SmartManagement.full,
+      //smartManagement: SmartManagement.full,
       initialRoute: AppPages.INITIAL,
       title: AppMessage.appTitle,
       theme: AppTheme.themeData,

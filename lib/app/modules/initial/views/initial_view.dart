@@ -33,7 +33,7 @@ class _InitialViewState extends State<InitialView> {
           IngredientView(),
         ],
       ),
-      bottomNavigationBar: NavigationBar(
+      bottomNavigationBar: FooterBar(
         currentIndex: pageIndex,
         onTap: (index) {
           setState(() {

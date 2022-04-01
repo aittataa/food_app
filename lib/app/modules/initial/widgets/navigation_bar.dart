@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:food_app/app/config/messages/app_message.dart';
 import 'package:food_app/app/config/themes/app_theme.dart';
 
-class NavigationBar extends StatelessWidget {
+class FooterBar extends StatelessWidget {
   final int currentIndex;
   final Function(int)? onTap;
-  const NavigationBar({
+  const FooterBar({
     Key? key,
     required this.currentIndex,
     this.onTap,
