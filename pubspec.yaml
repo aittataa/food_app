@@ -2,7 +2,7 @@ name: food_app
 version: 1.0.0+1
 description: Food App
 environment: 
-  sdk: '>=2.12.0 <3.0.0'
+  sdk: '>=2.15.0 <3.0.0'
 
 dependencies: 
   cupertino_icons: ^1.0.2
