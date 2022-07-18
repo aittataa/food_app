@@ -8,15 +8,22 @@ import 'package:food_app/app/modules/favorite/controllers/favorite_controller.da
 import 'package:food_app/app/shared/image_network.dart';
 import 'package:get/get.dart';
 
-class MealShape extends StatelessWidget {
-  final FavoriteController controller = Get.put(FavoriteController());
+class MealShape extends StatefulWidget {
   final Meal meal;
-  final bool state;
   MealShape({
     Key? key,
     required this.meal,
-    this.state = false,
   }) : super(key: key);
+
+  @override
+  State<MealShape> createState() => _MealShapeState(meal);
+}
+
+class _MealShapeState extends State<MealShape> {
+  final FavoriteController controller = Get.put(FavoriteController());
+  final Meal meal;
+
+  _MealShapeState(this.meal);
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +94,7 @@ class MealShape extends StatelessWidget {
               alignment: Alignment.topRight,
               child: GestureDetector(
                 onTap: () async {
-                  //setState(() => {meal.updateState});
+                  setState(() => {meal.updateState});
                   final String id = meal.idMeal!;
                   final bool state = meal.state;
                   var data = await controller.setFavorite(id, state);
@@ -110,102 +117,6 @@ class MealShape extends StatelessWidget {
           ],
         ),
       ),
-    );
-    return StatefulBuilder(
-      builder: (context, setState) {
-        meal.state = controller.getFavorite("${meal.idMeal}") ?? false;
-        return GestureDetector(
-          onTap: () => Get.to(() => DetailsView(meal: meal)),
-          child: Container(
-            decoration: BoxDecoration(
-              color: AppTheme.primaryBackColor,
-              borderRadius: BorderRadius.circular(25),
-              boxShadow: [AppConstant.boxShadow],
-            ),
-            child: Stack(
-              children: [
-                Column(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: AppTheme.primaryBackColor,
-                          borderRadius: BorderRadius.circular(25),
-                        ),
-                        child: ImageNetwork(
-                          image: "${meal.strMealThumb}",
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    if (meal.strArea != null)
-                      ListTile(
-                        contentPadding: EdgeInsets.symmetric(horizontal: 5),
-                        minVerticalPadding: 0,
-                        title: Text(
-                          "${meal.strMeal}",
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: AppTheme.primaryTextColor.withOpacity(.75),
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                        subtitle: Text(
-                          "${meal.strArea}",
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: AppTheme.primaryTextColor.withOpacity(.64),
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                      )
-                    else
-                      ListTile(
-                        contentPadding: EdgeInsets.symmetric(horizontal: 5),
-                        minVerticalPadding: 0,
-                        title: Text(
-                          "${meal.strMeal}",
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: AppTheme.primaryTextColor.withOpacity(.75),
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
-                Align(
-                  alignment: Alignment.topRight,
-                  child: GestureDetector(
-                    onTap: () async {
-                      setState(() => {meal.updateState});
-                      final String id = meal.idMeal!;
-                      final bool state = meal.state;
-                      var data = await controller.setFavorite(id, state);
-                      print(data);
-                    },
-                    child: Container(
-                      margin: EdgeInsets.all(5),
-                      padding: EdgeInsets.all(7.5),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppTheme.secondaryBackColor.withOpacity(.75),
-                      ),
-                      child: Icon(
-                        meal.state ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
-                        color: meal.state ? AppTheme.mainIconColor : AppTheme.secondaryIconColor,
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        );
-      },
     );
   }
 }
