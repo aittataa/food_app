@@ -20,6 +20,97 @@ class MealShape extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => Get.to(() => DetailsView(meal: meal)),
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppTheme.primaryBackColor,
+          borderRadius: BorderRadius.circular(25),
+          boxShadow: [AppConstant.boxShadow],
+        ),
+        child: Stack(
+          children: [
+            Column(
+              children: [
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: AppTheme.primaryBackColor,
+                      borderRadius: BorderRadius.circular(25),
+                    ),
+                    child: ImageNetwork(
+                      image: "${meal.strMealThumb}",
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                if (meal.strArea != null)
+                  ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 5),
+                    minVerticalPadding: 0,
+                    title: Text(
+                      "${meal.strMeal}",
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: AppTheme.primaryTextColor.withOpacity(.75),
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    subtitle: Text(
+                      "${meal.strArea}",
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: AppTheme.primaryTextColor.withOpacity(.64),
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  )
+                else
+                  ListTile(
+                    contentPadding: EdgeInsets.symmetric(horizontal: 5),
+                    minVerticalPadding: 0,
+                    title: Text(
+                      "${meal.strMeal}",
+                      textAlign: TextAlign.center,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        color: AppTheme.primaryTextColor.withOpacity(.75),
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+            Align(
+              alignment: Alignment.topRight,
+              child: GestureDetector(
+                onTap: () async {
+                  //setState(() => {meal.updateState});
+                  final String id = meal.idMeal!;
+                  final bool state = meal.state;
+                  var data = await controller.setFavorite(id, state);
+                  print(data);
+                },
+                child: Container(
+                  margin: EdgeInsets.all(5),
+                  padding: EdgeInsets.all(7.5),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppTheme.secondaryBackColor.withOpacity(.75),
+                  ),
+                  child: Icon(
+                    meal.state ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
+                    color: meal.state ? AppTheme.mainIconColor : AppTheme.secondaryIconColor,
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
     return StatefulBuilder(
       builder: (context, setState) {
         meal.state = controller.getFavorite("${meal.idMeal}") ?? false;
