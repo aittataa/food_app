@@ -5,7 +5,8 @@ import 'package:food_app/app/config/themes/app_theme.dart';
 import 'package:food_app/app/data/models/ingredients.dart';
 import 'package:food_app/app/data/models/meals.dart';
 import 'package:food_app/app/modules/details/widgets/details_shape.dart';
-import 'package:food_app/app/shared/image_network.dart';
+
+import '../../../shared/image_network.dart';
 
 class DetailsBody extends StatelessWidget {
   final Meal meal;
@@ -134,6 +135,7 @@ class DetailsBody extends StatelessWidget {
                 strIngredient: "${meal.strMeasure8} ${meal.strIngredient8}",
               ),
             ),
+            /*
             DetailsShape(
               ingredient: Ingredient(
                 strIngredientThumb: "${meal.strThumbIngredient9}",
@@ -206,6 +208,7 @@ class DetailsBody extends StatelessWidget {
                 strIngredient: "${meal.strMeasure20} ${meal.strIngredient20}",
               ),
             ),
+            */
           ],
         ),
         ListTile(

@@ -17,8 +17,9 @@ class FoodFirst extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
+      defaultTransition: Transition.noTransition,
       smartManagement: SmartManagement.full,
+      debugShowCheckedModeBanner: false,
       title: AppMessage.appTitle,
       theme: AppTheme.themeData,
       home: InitialView(),
