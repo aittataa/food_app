@@ -4,6 +4,8 @@ import 'package:food_app/app/config/themes/app_theme.dart';
 import 'package:food_app/app/modules/favorite/views/favorite_view.dart';
 import 'package:get/get.dart';
 
+import '../config/constants/app_constant.dart';
+
 class HeaderButton extends StatelessWidget {
   const HeaderButton({Key? key}) : super(key: key);
 
@@ -14,7 +16,7 @@ class HeaderButton extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppTheme.mainColor,
         borderRadius: BorderRadius.circular(10),
-        //boxShadow: [AppConstant.boxShadow],
+        boxShadow: [AppConstant.boxShadow],
       ),
       child: IconButton(
         onPressed: () => Get.to(() => FavoriteView()),

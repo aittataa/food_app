@@ -135,7 +135,6 @@ class DetailsBody extends StatelessWidget {
                 strIngredient: "${meal.strMeasure8} ${meal.strIngredient8}",
               ),
             ),
-            /*
             DetailsShape(
               ingredient: Ingredient(
                 strIngredientThumb: "${meal.strThumbIngredient9}",
@@ -208,7 +207,6 @@ class DetailsBody extends StatelessWidget {
                 strIngredient: "${meal.strMeasure20} ${meal.strIngredient20}",
               ),
             ),
-            */
           ],
         ),
         ListTile(
